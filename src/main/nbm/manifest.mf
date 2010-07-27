@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Install: b2s/recent/files/RecentFileListInstaller.class
+OpenIDE-Module-Localizing-Bundle: b2s/recent/files/Bundle.properties
+OpenIDE-Module-Layer: b2s/recent/files/layer.xml

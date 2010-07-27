@@ -1,0 +1,12 @@
+- clean up files as projects are closed
+- give the files that are still open a different background
+- show the file path for the current selected file
+- show the icon of the file type in list by the file
+- on mouse over it should change the highlighted file
+- add tooltip to the item to show the whole filepath
+- show file extension in the list
+- do not show the current file in the editor in the list
+- window should not have a close, minimize, or maximize button
+- window should be modal
+- window should be resizable
+- action should be in the "View" menu
