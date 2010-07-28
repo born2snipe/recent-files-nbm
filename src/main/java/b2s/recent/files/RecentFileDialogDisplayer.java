@@ -14,41 +14,30 @@
 package b2s.recent.files;
 
 import java.awt.Cursor;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
+import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JList;
+import javax.swing.ListModel;
+import org.openide.loaders.DataObject;
 import org.openide.util.NbBundle;
 import org.openide.windows.WindowManager;
 
 public class RecentFileDialogDisplayer {
-    void displayRecentFiles() {
+    private FileOpener fileOpener = new FileOpener();
+
+    void displayRecentFiles(List<DataObject> dataObjects) {
         final JDialog dialog = new JDialog(
                 WindowManager.getDefault().getMainWindow(),
                 NbBundle.getMessage(RecentFileDialogDisplayer.class, "CTL_RecentFilesAction"),
                 true
         );
-        final JList list = new JList(new DataObjectListModel(RecentFileListInstaller.dataObjects));
+        
+        ListModel model = new DataObjectListModel(dataObjects);
+        JList list = new JList(model);
         list.setCellRenderer(new DataObjectCellRenderer());
         list.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        list.addKeyListener(new KeyAdapter(){
-            @Override
-            public void keyReleased(KeyEvent e) {
-                switch(e.getKeyCode()) {
-                    case KeyEvent.VK_ESCAPE:
-                        dialog.dispose();
-                        break;
-                }
-            }
-        });
-        list.addMouseMotionListener(new MouseMotionAdapter(){
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-            }
-        });
+        list.addKeyListener(new OpenFileListener(dialog));
+        list.addKeyListener(new CloseDialogListener(dialog));
         list.setSelectedIndex(0);
 
         dialog.add(list);

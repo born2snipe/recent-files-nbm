@@ -14,3 +14,4 @@ X action should be in the "View" menu
 - give the user the ability to set the number of recent files to track (default 10)
 - should be enabled only when there are recent files
 - press "Enter" to open the file in an editor, or make the editor active
+X automatically grab the files that are currently open

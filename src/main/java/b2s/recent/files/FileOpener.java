@@ -13,20 +13,17 @@
 
 package b2s.recent.files;
 
-import java.util.List;
-import org.junit.Test;
-import static org.mockito.Mockito.*;
+import org.openide.loaders.DataObject;
 
-public class RecentFilesActionTest {
-    @Test
-    public void test() {
-        RecentFileDialogDisplayer dialogDisplayer = mock(RecentFileDialogDisplayer.class);
+public class FileOpener {
+    private EditorUtil editorUtil = new EditorUtil();
 
-        RecentFilesAction action = new RecentFilesAction();
-        action.setRecentFileDialogDisplayer(dialogDisplayer);
-
-        action.actionPerformed(null);
-
-        verify(dialogDisplayer).displayRecentFiles(isA(List.class));
+    public void open(DataObject dataObject) {
+        if (editorUtil.hasEditorAlready(dataObject)) {
+            editorUtil.activateEditorFor(dataObject);
+        } else {
+//            FileObject fileObject = dataObject.getPrimaryFile();
+//            OpenFile.open(fileObject, 0);
+        }
     }
 }

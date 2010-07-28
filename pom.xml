@@ -27,6 +27,11 @@
     </repositories>
 
     <dependencies>
+<!--        <dependency>
+            <groupId>org.netbeans.modules</groupId>
+            <artifactId>org-netbeans-modules-utilities</artifactId>
+            <version>${platform.version}</version>
+        </dependency>-->
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-dialogs</artifactId>

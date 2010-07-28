@@ -21,6 +21,19 @@ import org.openide.windows.TopComponent;
 
 public class EditorUtil {
 
+    public void activateEditorFor(DataObject findDataObject) {
+        for (TopComponent topComponent : TopComponent.getRegistry().getOpened()) {
+            DataObject dataObject = dataObject(topComponent);
+            if (dataObject != null && dataObject.equals(findDataObject)) {
+                topComponent.requestActive();
+            }
+        }
+    }
+
+    public boolean hasEditorAlready(DataObject dataObject) {
+        return currentFilesOpened().contains(dataObject);
+    }
+
     public List<DataObject> currentFilesOpened() {
         List<DataObject> dataObjects = new ArrayList<DataObject>();
         for (TopComponent topComponent : TopComponent.getRegistry().getOpened()) {

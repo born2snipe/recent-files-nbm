@@ -13,20 +13,21 @@
 
 package b2s.recent.files;
 
-import java.util.List;
-import org.junit.Test;
-import static org.mockito.Mockito.*;
+import java.awt.Dialog;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class RecentFilesActionTest {
-    @Test
-    public void test() {
-        RecentFileDialogDisplayer dialogDisplayer = mock(RecentFileDialogDisplayer.class);
+public class CloseDialogListener extends KeyAdapter {
+    private final Dialog dialog;
 
-        RecentFilesAction action = new RecentFilesAction();
-        action.setRecentFileDialogDisplayer(dialogDisplayer);
-
-        action.actionPerformed(null);
-
-        verify(dialogDisplayer).displayRecentFiles(isA(List.class));
+    public CloseDialogListener(Dialog dialog) {
+        this.dialog = dialog;
+    }
+    
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            dialog.dispose();
+        }
     }
 }
