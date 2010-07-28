@@ -1,12 +1,16 @@
 - clean up files as projects are closed
-- give the files that are still open a different background
+X give the files that are still open a different background color
 - show the file path for the current selected file
-- show the icon of the file type in list by the file
+X show the icon of the file type in list by the file
 - on mouse over it should change the highlighted file
-- add tooltip to the item to show the whole filepath
-- show file extension in the list
+X add tooltip to the item to show the whole filepath
+X show file extension in the list
 - do not show the current file in the editor in the list
 - window should not have a close, minimize, or maximize button
-- window should be modal
+X window should be modal
 - window should be resizable
-- action should be in the "View" menu
+X action should be in the "View" menu
+- persist the recent files so when netbeans is re-opened there will be a recent file list
+- give the user the ability to set the number of recent files to track (default 10)
+- should be enabled only when there are recent files
+- press "Enter" to open the file in an editor, or make the editor active
