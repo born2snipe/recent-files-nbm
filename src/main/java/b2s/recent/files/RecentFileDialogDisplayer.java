@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 import org.openide.loaders.DataObject;
 import org.openide.util.NbBundle;
 import org.openide.windows.WindowManager;
@@ -34,6 +35,7 @@ public class RecentFileDialogDisplayer {
         
         ListModel model = new DataObjectListModel(dataObjects);
         JList list = new JList(model);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setCellRenderer(new DataObjectCellRenderer());
         list.setCursor(new Cursor(Cursor.HAND_CURSOR));
         list.addKeyListener(new OpenFileListener(dialog));
