@@ -16,7 +16,6 @@ package b2s.recent.files;
 import java.awt.Color;
 import java.awt.Component;
 import java.beans.BeanInfo;
-import java.util.List;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -25,12 +24,8 @@ import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObject;
 
 public class DataObjectCellRenderer extends DefaultListCellRenderer {
+    private static final Color FILE_ALREADY_OPEN = new Color(191,255,194);
     private EditorUtil editorUtil = new EditorUtil();
-    private List<DataObject> openedFiles;
-
-    public DataObjectCellRenderer() {
-        openedFiles = editorUtil.currentFilesOpened();
-    }
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -43,8 +38,8 @@ public class DataObjectCellRenderer extends DefaultListCellRenderer {
         label.setText(filename(fileObject));
         label.setToolTipText(fileObject.getPath());
 
-        if (!isSelected && openedFiles.contains(dataObject)) {
-            label.setBackground(new Color(191,255,194));
+        if (!isSelected && editorUtil.hasEditorAlready(dataObject)) {
+            label.setBackground(FILE_ALREADY_OPEN);
         }
 
         return label;

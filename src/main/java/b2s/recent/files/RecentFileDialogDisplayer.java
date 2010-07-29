@@ -38,6 +38,8 @@ public class RecentFileDialogDisplayer {
         list.setCursor(new Cursor(Cursor.HAND_CURSOR));
         list.addKeyListener(new OpenFileListener(dialog));
         list.addKeyListener(new CloseDialogListener(dialog));
+        list.addMouseListener(new OpenFileListener(dialog));
+        list.addMouseMotionListener(new SelectRowOnMouseHoverListener());
         list.setSelectedIndex(0);
 
         dialog.add(list);

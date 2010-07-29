@@ -2,7 +2,7 @@
 X give the files that are still open a different background color
 - show the file path for the current selected file
 X show the icon of the file type in list by the file
-- on mouse over it should change the highlighted file
+X on mouse over it should change the highlighted file
 X add tooltip to the item to show the whole filepath
 X show file extension in the list
 - do not show the current file in the editor in the list

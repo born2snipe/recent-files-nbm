@@ -16,11 +16,13 @@ package b2s.recent.files;
 import java.awt.Dialog;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JList;
 import javax.swing.ListModel;
 import org.openide.loaders.DataObject;
 
-public class OpenFileListener extends KeyAdapter {
+public class OpenFileListener extends KeyAdapter implements MouseListener {
     private FileOpener fileOpener = new FileOpener();
     private final Dialog dialog;
 
@@ -30,15 +32,49 @@ public class OpenFileListener extends KeyAdapter {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        JList list = (JList) e.getComponent();
+        JList list = (JList) e.getSource();
         ListModel model = list.getModel();
-
-        switch(e.getKeyCode()) {
-            case KeyEvent.VK_ENTER:
-                fileOpener.open((DataObject) model.getElementAt(list.getSelectedIndex()));
-                dialog.dispose();
-                break;
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+           openSelectedFile(list, model);
         }
+    }
+
+    private void openSelectedFile(JList list, ListModel model) {
+        fileOpener.open((DataObject) model.getElementAt(list.getSelectedIndex()));
+        dialog.dispose();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        JList list = (JList) e.getSource();
+        ListModel model = list.getModel();
+        if (e.getButton() == MouseEvent.BUTTON1) {
+           openSelectedFile(list, model);
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    public void setFileOpener(FileOpener fileOpener) {
+        this.fileOpener = fileOpener;
     }
 
 }
