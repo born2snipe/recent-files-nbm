@@ -34,6 +34,10 @@ public class EditorUtil {
         return currentFilesOpened().contains(dataObject);
     }
 
+    public DataObject activeEditor() {
+        return dataObject(TopComponent.getRegistry().getActivated());
+    }
+
     public List<DataObject> currentFilesOpened() {
         List<DataObject> dataObjects = new ArrayList<DataObject>();
         for (TopComponent topComponent : TopComponent.getRegistry().getOpened()) {

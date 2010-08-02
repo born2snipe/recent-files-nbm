@@ -27,6 +27,6 @@ public class RecentFilesActionTest {
 
         action.actionPerformed(null);
 
-        verify(dialogDisplayer).displayRecentFiles(isA(List.class));
+        verify(dialogDisplayer).displayRecentFiles(isA(RecentFiles.class));
     }
 }

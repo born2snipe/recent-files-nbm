@@ -25,7 +25,7 @@ public final class RecentFilesAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        recentFileDialogDisplayer.displayRecentFiles(RecentFileListInstaller.dataObjects);
+        recentFileDialogDisplayer.displayRecentFiles(RecentFileListInstaller.recentFiles);
     }
 
     void setRecentFileDialogDisplayer(RecentFileDialogDisplayer dialogDisplayer) {

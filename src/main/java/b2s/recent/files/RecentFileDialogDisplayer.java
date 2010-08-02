@@ -14,26 +14,22 @@
 package b2s.recent.files;
 
 import java.awt.Cursor;
-import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
-import org.openide.loaders.DataObject;
 import org.openide.util.NbBundle;
 import org.openide.windows.WindowManager;
 
 public class RecentFileDialogDisplayer {
-    private FileOpener fileOpener = new FileOpener();
-
-    void displayRecentFiles(List<DataObject> dataObjects) {
+    void displayRecentFiles(RecentFiles recentFiles) {
         final JDialog dialog = new JDialog(
                 WindowManager.getDefault().getMainWindow(),
                 NbBundle.getMessage(RecentFileDialogDisplayer.class, "CTL_RecentFilesAction"),
                 true
         );
         
-        ListModel model = new DataObjectListModel(dataObjects);
+        ListModel model = new DataObjectListModel(recentFiles.asList());
         JList list = new JList(model);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setCellRenderer(new DataObjectCellRenderer());

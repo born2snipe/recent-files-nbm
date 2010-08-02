@@ -15,9 +15,6 @@ package b2s.recent.files;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import org.openide.loaders.DataObject;
 import org.openide.modules.ModuleInstall;
 import org.openide.windows.TopComponent;
@@ -25,14 +22,21 @@ import org.openide.windows.WindowManager;
 
 public class RecentFileListInstaller extends ModuleInstall implements PropertyChangeListener  {
     private static EditorUtil editorUtil = new EditorUtil();
-    public static List<DataObject> dataObjects = Collections.synchronizedList(new ArrayList());
+    public static RecentFiles recentFiles = new RecentFiles(10);
+    private static DataObject currentOpenedEditor;
 
     @Override
     public void restored() {
         WindowManager.getDefault().invokeWhenUIReady(new Runnable() {
             @Override
             public void run() {
-                dataObjects.addAll(editorUtil.currentFilesOpened());;
+                // add all the open windows
+                for (DataObject obj : editorUtil.currentFilesOpened()) {
+                    recentFiles.moveToTop(obj);
+                }
+
+                currentOpenedEditor = editorUtil.activeEditor();
+                
                 TopComponent.getRegistry().addPropertyChangeListener(RecentFileListInstaller.this);
             }
         });
@@ -44,8 +48,12 @@ public class RecentFileListInstaller extends ModuleInstall implements PropertyCh
         DataObject dataObject = editorUtil.dataObject(evt.getNewValue());
         if (dataObject == null) return;
 
-        if (TopComponent.Registry.PROP_TC_OPENED.equals(name)) {
-            dataObjects.add(dataObject);
+        if (currentOpenedEditor != null) recentFiles.moveToTop(currentOpenedEditor);
+
+        if (TopComponent.Registry.PROP_TC_OPENED.equals(name)
+                || TopComponent.Registry.PROP_ACTIVATED.equals(name)) {
+            recentFiles.remove(dataObject);
+            currentOpenedEditor = dataObject;
         }
     }
 }
