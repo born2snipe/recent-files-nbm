@@ -27,11 +27,6 @@
     </repositories>
 
     <dependencies>
-<!--        <dependency>
-            <groupId>org.netbeans.modules</groupId>
-            <artifactId>org-netbeans-modules-utilities</artifactId>
-            <version>${platform.version}</version>
-        </dependency>-->
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-dialogs</artifactId>
@@ -110,6 +105,9 @@
                 <artifactId>nbm-maven-plugin</artifactId>
                 <version>3.2</version>
                 <extensions>true</extensions>
+                <configuration>
+                    <verifyRuntime>skip</verifyRuntime>
+                </configuration>
             </plugin>
 
             <plugin>

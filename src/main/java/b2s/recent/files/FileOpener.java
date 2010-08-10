@@ -13,6 +13,7 @@
 
 package b2s.recent.files;
 
+import org.openide.cookies.OpenCookie;
 import org.openide.loaders.DataObject;
 
 public class FileOpener {
@@ -22,8 +23,7 @@ public class FileOpener {
         if (editorUtil.hasEditorAlready(dataObject)) {
             editorUtil.activateEditorFor(dataObject);
         } else {
-//            FileObject fileObject = dataObject.getPrimaryFile();
-//            OpenFile.open(fileObject, 0);
+            dataObject.getLookup().lookup(OpenCookie.class).open();
         }
     }
 }

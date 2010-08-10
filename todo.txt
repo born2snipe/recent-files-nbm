@@ -5,7 +5,7 @@ X show the icon of the file type in list by the file
 X on mouse over it should change the highlighted file
 X add tooltip to the item to show the whole filepath
 X show file extension in the list
-- do not show the current file in the editor in the list
+X do not show the current file in the editor in the list
 - window should not have a close, minimize, or maximize button
 X window should be modal
 - window should be resizable
@@ -13,5 +13,5 @@ X action should be in the "View" menu
 - persist the recent files so when netbeans is re-opened there will be a recent file list
 - give the user the ability to set the number of recent files to track (default 10)
 - should be enabled only when there are recent files
-- press "Enter" to open the file in an editor, or make the editor active
+X press "Enter" to open the file in an editor, or make the editor active
 X automatically grab the files that are currently open
