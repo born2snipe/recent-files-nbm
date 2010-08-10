@@ -7,6 +7,10 @@
     <version>0.1-SNAPSHOT</version>
     <name>Recent File List</name>
 
+    <description>
+        Keeps track of the files you have visited and makes it simple to switch back to a past file
+    </description>
+
     <properties>
         <platform.version>RELEASE69</platform.version>
     </properties>
