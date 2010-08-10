@@ -20,10 +20,7 @@
     <folder name="Actions">
         <folder name="View">
             <file name="b2s-recent-files-RecentFilesAction.instance">
-                <attr name="delegate" newvalue="b2s.recent.files.RecentFilesAction"/>
-                <attr name="displayName" bundlevalue="b2s.recent.files.Bundle#CTL_RecentFilesAction"/>
-                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
-                <attr name="noIconInMenu" boolvalue="false"/>
+                <attr name="instanceClass" stringvalue="b2s.recent.files.RecentFilesAction"/>
             </file>
         </folder>
     </folder>

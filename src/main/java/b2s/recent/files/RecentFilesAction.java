@@ -13,10 +13,11 @@
 
 package b2s.recent.files;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import org.openide.util.HelpCtx;
+import org.openide.util.NbBundle;
+import org.openide.util.actions.CallableSystemAction;
 
-public final class RecentFilesAction implements ActionListener {
+public final class RecentFilesAction extends CallableSystemAction {
     private RecentFileDialogDisplayer recentFileDialogDisplayer;
 
     public RecentFilesAction() {
@@ -24,8 +25,23 @@ public final class RecentFilesAction implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void performAction() {
         recentFileDialogDisplayer.displayRecentFiles(RecentFileListInstaller.recentFiles);
+    }
+
+    @Override
+    public String getName() {
+        return NbBundle.getMessage(RecentFilesAction.class, "CTL_RecentFilesAction");
+    }
+
+    @Override
+    public HelpCtx getHelpCtx() {
+        return HelpCtx.DEFAULT_HELP;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return RecentFileListInstaller.recentFiles.hasFiles();
     }
 
     void setRecentFileDialogDisplayer(RecentFileDialogDisplayer dialogDisplayer) {

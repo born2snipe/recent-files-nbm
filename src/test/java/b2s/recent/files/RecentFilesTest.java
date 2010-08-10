@@ -79,6 +79,7 @@ public class RecentFilesTest {
         recentFiles.moveToTop(dataObject);
 
         assertEquals(Arrays.asList(dataObject), recentFiles.asList());
+        assertTrue(recentFiles.hasFiles());
     }
 
     @Test
@@ -109,6 +110,7 @@ public class RecentFilesTest {
         recentFiles.remove(dataObject);
 
         assertEquals(0, recentFiles.asList().size());
+        assertFalse(recentFiles.hasFiles());
     }
 
     @Test

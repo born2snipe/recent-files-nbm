@@ -13,7 +13,6 @@
 
 package b2s.recent.files;
 
-import java.util.List;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
@@ -25,7 +24,7 @@ public class RecentFilesActionTest {
         RecentFilesAction action = new RecentFilesAction();
         action.setRecentFileDialogDisplayer(dialogDisplayer);
 
-        action.actionPerformed(null);
+        action.performAction();
 
         verify(dialogDisplayer).displayRecentFiles(isA(RecentFiles.class));
     }

@@ -47,6 +47,10 @@ public class RecentFiles {
         files.remove(dataObject);
     }
 
+    public synchronized boolean hasFiles() {
+        return !files.isEmpty();
+    }
+
     void setDataObjectUtil(DataObjectUtil dataObjectUtil) {
         this.dataObjectUtil = dataObjectUtil;
     }
