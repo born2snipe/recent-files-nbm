@@ -17,6 +17,9 @@ import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObject;
 
 public class DataObjectUtil {
+    public boolean isValid(DataObject obj) {
+        return obj.isValid();
+    }
     public FileObject fileFor(DataObject obj) {
         return obj.getPrimaryFile();
     }

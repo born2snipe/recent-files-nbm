@@ -13,6 +13,7 @@
 
 package b2s.recent.files;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import org.openide.loaders.DataObject;
 import org.junit.Before;
@@ -21,11 +22,16 @@ import static org.mockito.Mockito.*;
 import static junit.framework.Assert.*;
 
 public class RecentFilesTest {
+    private DataObjectUtil dataObjectUtil;
     private RecentFiles recentFiles;
     
     @Before
     public void setUp() {
+        dataObjectUtil = mock(DataObjectUtil.class);
         recentFiles = new RecentFiles(3);
+        recentFiles.setDataObjectUtil(dataObjectUtil);
+
+        when(dataObjectUtil.isValid(isA(DataObject.class))).thenReturn(true);
     }
 
     @Test
@@ -73,6 +79,16 @@ public class RecentFilesTest {
         recentFiles.moveToTop(dataObject);
 
         assertEquals(Arrays.asList(dataObject), recentFiles.asList());
+    }
+
+    @Test
+    public void removeInvalidFiles() {
+        DataObject dataObject = mock(DataObject.class);
+        when(dataObjectUtil.isValid(isA(DataObject.class))).thenReturn(false);
+
+        recentFiles.moveToTop(dataObject);
+
+        assertEquals(new ArrayList(), recentFiles.asList());
     }
 
     @Test

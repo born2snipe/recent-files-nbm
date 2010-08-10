@@ -1,4 +1,4 @@
-- clean up files as projects are closed
+X clean up files as projects are closed
 X give the files that are still open a different background color
 X show the file path for the current selected file
 X show the icon of the file type in list by the file

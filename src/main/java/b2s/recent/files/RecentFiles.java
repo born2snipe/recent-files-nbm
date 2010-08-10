@@ -19,6 +19,7 @@ import java.util.List;
 import org.openide.loaders.DataObject;
 
 public class RecentFiles {
+    private DataObjectUtil dataObjectUtil = new DataObjectUtil();
     private LinkedList<DataObject> files = new LinkedList();
     private final int maxRecentFiles;
 
@@ -35,10 +36,18 @@ public class RecentFiles {
     }
 
     public synchronized List<DataObject> asList() {
+        for (int i=files.size()-1;i>=0;i--) {
+            DataObject file = files.get(i);
+            if (!dataObjectUtil.isValid(file)) remove(file);
+        }
         return Collections.unmodifiableList(files);
     }
 
     public synchronized void remove(DataObject dataObject) {
         files.remove(dataObject);
+    }
+
+    void setDataObjectUtil(DataObjectUtil dataObjectUtil) {
+        this.dataObjectUtil = dataObjectUtil;
     }
 }
