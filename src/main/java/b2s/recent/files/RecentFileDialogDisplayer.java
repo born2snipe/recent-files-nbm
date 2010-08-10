@@ -13,6 +13,7 @@
 
 package b2s.recent.files;
 
+import java.awt.BorderLayout;
 import java.awt.Cursor;
 import javax.swing.JDialog;
 import javax.swing.JList;
@@ -28,9 +29,11 @@ public class RecentFileDialogDisplayer {
                 NbBundle.getMessage(RecentFileDialogDisplayer.class, "CTL_RecentFilesAction"),
                 true
         );
-        
+
+        CurrentFileLabel currentFileLabel = new CurrentFileLabel();
         ListModel model = new DataObjectListModel(recentFiles.asList());
         JList list = new JList(model);
+        list.addListSelectionListener(currentFileLabel);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setCellRenderer(new DataObjectCellRenderer());
         list.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -40,7 +43,9 @@ public class RecentFileDialogDisplayer {
         list.addMouseMotionListener(new SelectRowOnMouseHoverListener());
         list.setSelectedIndex(0);
 
-        dialog.add(list);
+        dialog.add(list, BorderLayout.CENTER);
+        dialog.add(currentFileLabel, BorderLayout.SOUTH);
+
         dialog.pack();
         dialog.setLocationRelativeTo(WindowManager.getDefault().getMainWindow());
         dialog.setResizable(false);

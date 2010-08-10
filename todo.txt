@@ -1,6 +1,6 @@
 - clean up files as projects are closed
 X give the files that are still open a different background color
-- show the file path for the current selected file
+X show the file path for the current selected file
 X show the icon of the file type in list by the file
 X on mouse over it should change the highlighted file
 X add tooltip to the item to show the whole filepath
@@ -15,3 +15,6 @@ X action should be in the "View" menu
 - should be enabled only when there are recent files
 X press "Enter" to open the file in an editor, or make the editor active
 X automatically grab the files that are currently open
+- make the current file label show what project the file is in instead of path if the same filename is already in the list (ex. pom.xml)
+- set minimum size on the dialog window so the whole title will always be seen
+- wrap scrolling with the pressing of the keyboard
