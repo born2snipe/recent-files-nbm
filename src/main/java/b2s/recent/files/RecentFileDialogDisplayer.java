@@ -15,6 +15,7 @@ package b2s.recent.files;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.ListModel;
@@ -45,6 +46,7 @@ public class RecentFileDialogDisplayer {
 
         dialog.add(list, BorderLayout.CENTER);
         dialog.add(currentFileLabel, BorderLayout.SOUTH);
+        dialog.setMinimumSize(new Dimension(200, 0));
 
         dialog.pack();
         dialog.setLocationRelativeTo(WindowManager.getDefault().getMainWindow());
