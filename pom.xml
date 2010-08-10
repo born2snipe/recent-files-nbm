@@ -178,4 +178,8 @@
         </plugins>
     </build>
 
+    <scm>
+         <developerConnection>scm:git:git://github.com/born2snipe/recent-files-nbm.git</developerConnection>
+    </scm>
+
 </project>
