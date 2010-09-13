@@ -51,7 +51,11 @@ public class CurrentFileLabel extends JLabel implements ListSelectionListener {
         FileObject fileObject = dataObjectUtil.fileFor(file);
 
         String absolutePath = fileObject.getPath();
-        String pathWithNoFile = absolutePath.substring(0, absolutePath.lastIndexOf(PATH_SEPERATOR));
+
+        String pathWithNoFile = "";
+        if (absolutePath.contains(PATH_SEPERATOR)) {
+            pathWithNoFile = absolutePath.substring(0, absolutePath.lastIndexOf(PATH_SEPERATOR));
+        }
 
         boolean hasTooManyParentDirectories = false;
         List<String> parentDirectories = parentDirsOf(pathWithNoFile);
@@ -64,7 +68,7 @@ public class CurrentFileLabel extends JLabel implements ListSelectionListener {
             pathWithNoFile = builder.toString();
         }
 
-        if (!pathWithNoFile.startsWith(PATH_SEPERATOR)) {
+        if (!pathWithNoFile.startsWith(PATH_SEPERATOR) && isNotEmpty(pathWithNoFile)) {
             pathWithNoFile = PATH_SEPERATOR + pathWithNoFile;
         }
 
@@ -73,6 +77,10 @@ public class CurrentFileLabel extends JLabel implements ListSelectionListener {
         }
 
         setText(pathWithNoFile);
+    }
+
+    private boolean isNotEmpty(String pathWithNoFile) {
+        return pathWithNoFile.trim().length() > 0;
     }
 
     private List<String> parentDirsOf(String path) {

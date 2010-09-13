@@ -74,6 +74,24 @@ public class CurrentFileLabelTest {
 
         assertEquals("/parent", label.getText());
     }
+    
+    @Test
+    public void noParentDirectory_StartsWithSlash() {
+        when(fileObject.getPath()).thenReturn("/test.txt");
+
+        label.valueChanged(event());
+
+        assertEquals("", label.getText());
+    }
+
+    @Test
+    public void noParentDirectory() {
+        when(fileObject.getPath()).thenReturn("test.txt");
+
+        label.valueChanged(event());
+
+        assertEquals("", label.getText());
+    }
 
     @Test
     public void eventSaysThingsAreStillBeingAdjusted() {
