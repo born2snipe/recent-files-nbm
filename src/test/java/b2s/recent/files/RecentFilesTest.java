@@ -35,6 +35,48 @@ public class RecentFilesTest {
     }
 
     @Test
+    public void multipleFilesDifferentFilenames() {
+        DataObject dataObject = mock(DataObject.class);
+        DataObject dataObject2 = mock(DataObject.class);
+
+        when(dataObject.getName()).thenReturn("name");
+        when(dataObject2.getName()).thenReturn("name1");
+
+        recentFiles.moveToTop(dataObject);
+        recentFiles.moveToTop(dataObject2);
+
+        assertEquals(1, recentFiles.filesWithTheSameName("name"));
+    }
+
+    @Test
+    public void multipleFilesHaveTheSameName_differentCase() {
+        DataObject dataObject = mock(DataObject.class);
+        DataObject dataObject2 = mock(DataObject.class);
+
+        when(dataObject.getName()).thenReturn("name");
+        when(dataObject2.getName()).thenReturn("NAME");
+
+        recentFiles.moveToTop(dataObject);
+        recentFiles.moveToTop(dataObject2);
+
+        assertEquals(2, recentFiles.filesWithTheSameName("name"));
+    }
+
+    @Test
+    public void multipleFilesHaveTheSameName() {
+        DataObject dataObject = mock(DataObject.class);
+        DataObject dataObject2 = mock(DataObject.class);
+
+        when(dataObject.getName()).thenReturn("name");
+        when(dataObject2.getName()).thenReturn("name");
+
+        recentFiles.moveToTop(dataObject);
+        recentFiles.moveToTop(dataObject2);
+
+        assertEquals(2, recentFiles.filesWithTheSameName("name"));
+    }
+
+    @Test
     public void add_multipleFiles_canNotGoOverMaxCount() {
         DataObject dataObject = mock(DataObject.class);
         DataObject dataObject2 = mock(DataObject.class);

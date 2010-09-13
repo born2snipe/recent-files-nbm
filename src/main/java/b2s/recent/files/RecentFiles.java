@@ -51,6 +51,16 @@ public class RecentFiles {
         return !files.isEmpty();
     }
 
+    public synchronized int filesWithTheSameName(String name) {
+        int count = 0;
+        for (DataObject dataObject : files) {
+            if (name.equalsIgnoreCase(dataObject.getName())) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     void setDataObjectUtil(DataObjectUtil dataObjectUtil) {
         this.dataObjectUtil = dataObjectUtil;
     }

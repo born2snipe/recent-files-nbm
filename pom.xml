@@ -97,6 +97,16 @@
             <artifactId>org-openide-filesystems</artifactId>
             <version>${platform.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-modules-projectuiapi</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-modules-projectapi</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
     </dependencies>
 
      <build>
