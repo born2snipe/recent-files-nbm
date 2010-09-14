@@ -16,8 +16,13 @@ package b2s.recent.files;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.filesystems.FileObject;
+import org.openide.loaders.DataObject;
 
 public class ProjectUtil {
+    public boolean containingProjectClosed(DataObject dataObject) {
+        return projectNameFor(dataObject.getPrimaryFile()).length() == 0;
+    }
+
     public String projectNameFor(FileObject fileObject) {
         Project projects[] = OpenProjects.getDefault().getOpenProjects();
         for (Project project : projects) {

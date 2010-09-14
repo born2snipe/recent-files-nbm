@@ -24,14 +24,19 @@ import static junit.framework.Assert.*;
 public class RecentFilesTest {
     private DataObjectUtil dataObjectUtil;
     private RecentFiles recentFiles;
+    private ProjectUtil projectUtil;
     
     @Before
     public void setUp() {
         dataObjectUtil = mock(DataObjectUtil.class);
+        projectUtil = mock(ProjectUtil.class);
+
         recentFiles = new RecentFiles(3);
         recentFiles.setDataObjectUtil(dataObjectUtil);
+        recentFiles.setProjectUtil(projectUtil);
 
         when(dataObjectUtil.isValid(isA(DataObject.class))).thenReturn(true);
+        when(projectUtil.containingProjectClosed(isA(DataObject.class))).thenReturn(false);
     }
 
     @Test
@@ -165,5 +170,16 @@ public class RecentFilesTest {
         recentFiles.remove(dataObject);
 
         assertEquals(Arrays.asList(dataObject2), recentFiles.asList());
+    }
+
+    @Test
+    public void containingProjectIsClosed() {
+        DataObject dataObject = mock(DataObject.class);
+
+        when(projectUtil.containingProjectClosed(isA(DataObject.class))).thenReturn(true);
+
+        recentFiles.moveToTop(dataObject);
+
+        assertEquals(0, recentFiles.asList().size());
     }
 }
