@@ -17,4 +17,4 @@ X press "Enter" to open the file in an editor, or make the editor active
 X automatically grab the files that are currently open
 X make the current file label show what project the file is in instead of path if the same filename is already in the list (ex. pom.xml)
 X set minimum size on the dialog window so the whole title will always be seen
-- wrap scrolling with the pressing of the keyboard
+X wrap scrolling with the pressing of the keyboard
