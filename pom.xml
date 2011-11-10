@@ -3,7 +3,7 @@
     <groupId>b2s</groupId>
     <artifactId>recent-file-list</artifactId>
     <packaging>nbm</packaging>
-    <version>0.4-SNAPSHOT</version>
+    <version>0.4</version>
     <name>Recent File List</name>
     
     <organization>
