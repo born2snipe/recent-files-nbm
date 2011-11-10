@@ -11,31 +11,17 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+
 package b2s.recent.files;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import javax.swing.AbstractListModel;
 import org.openide.loaders.DataObject;
+import java.util.ArrayList;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-public class DataObjectListModel extends AbstractListModel {
-    private List<DataObject> rows = Collections.synchronizedList(new ArrayList<DataObject>());
-
-    public DataObjectListModel(List<DataObject> dataObjects) {
-        rows.addAll(dataObjects);
-        this.fireIntervalAdded(rows, 0, rows.size());
-    }
-
-    @Override
-    public int getSize() {
-        return rows.size();
-    }
-
-    @Override
-    public Object getElementAt(int index) {
-	if (rows.isEmpty()) return null;
-        return rows.get(index);
-    }
-
+public class DataObjectListModelTest {
+ @Test
+ public void shouldReturnNullIfTheUnderlyingListIsEmpty() {
+   assertNull(new DataObjectListModel(new ArrayList<DataObject>()).getElementAt(0));
+ }
 }
