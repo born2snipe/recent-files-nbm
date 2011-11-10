@@ -5,6 +5,10 @@
     <packaging>nbm</packaging>
     <version>0.4-SNAPSHOT</version>
     <name>Recent File List</name>
+    
+    <organization>
+        <name>Dan Dudley</name>
+    </organization>
 
     <description>
         Keeps track of the files you have visited and makes it simple to switch back to a past file
