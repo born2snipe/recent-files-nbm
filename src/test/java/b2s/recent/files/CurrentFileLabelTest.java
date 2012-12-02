@@ -20,6 +20,9 @@ import javax.swing.event.ListSelectionEvent;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObject;
 import org.junit.Test;
+
+import java.io.File;
+
 import static junit.framework.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -50,34 +53,34 @@ public class CurrentFileLabelTest {
 
     @Test
     public void showAtMostFourParentDirectories() {
-        when(fileObject.getPath()).thenReturn("/1/2/3/4/5/test.txt");
+        when(fileObject.getPath()).thenReturn(platformFriendly("/1/2/3/4/5/test.txt"));
 
         label.valueChanged(event());
 
-        assertEquals(".../2/3/4/5", label.getText());
+        assertEquals(platformFriendly(".../2/3/4/5"), label.getText());
     }
 
     @Test
     public void pathShouldAlwaysStartWithASlash() {
-        when(fileObject.getPath()).thenReturn("parent/test.txt");
+        when(fileObject.getPath()).thenReturn(platformFriendly("parent/test.txt"));
 
         label.valueChanged(event());
 
-        assertEquals("/parent", label.getText());
+        assertEquals(platformFriendly("/parent"), label.getText());
     }
 
     @Test
     public void oneParentDirectory() {
-        when(fileObject.getPath()).thenReturn("/parent/test.txt");
+        when(fileObject.getPath()).thenReturn(platformFriendly("/parent/test.txt"));
 
         label.valueChanged(event());
 
-        assertEquals("/parent", label.getText());
+        assertEquals(platformFriendly("/parent"), label.getText());
     }
     
     @Test
     public void noParentDirectory_StartsWithSlash() {
-        when(fileObject.getPath()).thenReturn("/test.txt");
+        when(fileObject.getPath()).thenReturn(platformFriendly("/test.txt"));
 
         label.valueChanged(event());
 
@@ -95,13 +98,16 @@ public class CurrentFileLabelTest {
 
     @Test
     public void eventSaysThingsAreStillBeingAdjusted() {
-        when(fileObject.getPath()).thenReturn("/parent/test.txt");
+        when(fileObject.getPath()).thenReturn(platformFriendly("/parent/test.txt"));
 
         label.valueChanged(new ListSelectionEvent(list, -1, -2, true));
 
         assertEquals("", label.getText());
     }
 
+    private String platformFriendly(String path) {
+        return path.replace("/", File.separator);
+    }
 
     private ListSelectionEvent event() {
         return new ListSelectionEvent(list, -1, -2, false);
