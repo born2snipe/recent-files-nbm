@@ -56,6 +56,7 @@ public class DataObjectCellRenderer extends DefaultListCellRenderer {
 
         if (!isSelected && editorUtil.hasEditorAlready(dataObject)) {
             label.setBackground(FILE_ALREADY_OPEN);
+            label.setForeground(Color.BLACK);
         }
 
         return label;
