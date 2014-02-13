@@ -19,7 +19,7 @@ import org.openide.loaders.DataObject;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 
 public class RecentFilesTest {
     private DataObjectUtil dataObjectUtil;
