@@ -13,6 +13,7 @@
 
 package b2s.recent.files;
 
+import b2s.recent.files.startup.RecentFileListInstaller;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;

@@ -13,6 +13,7 @@
 
 package b2s.recent.files;
 
+import b2s.recent.files.startup.RecentFileListInstaller;
 import java.awt.Color;
 import java.awt.Component;
 import java.beans.BeanInfo;

@@ -21,11 +21,9 @@ import javax.swing.border.AbstractBorder;
 public class TopBorder extends AbstractBorder {
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-        Color oldColor = g.getColor();
-
-        g.setColor(Color.DARK_GRAY);
-        g.drawLine(x, y, x+width, y);
-
-        g.setColor(oldColor);
+        Graphics g2 = g.create();
+        g2.setColor(Color.DARK_GRAY);
+        g2.drawLine(x, y, x+width, y);
+        g2.dispose();
     }
 }

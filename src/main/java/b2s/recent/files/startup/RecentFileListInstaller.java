@@ -11,8 +11,10 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package b2s.recent.files;
+package b2s.recent.files.startup;
 
+import b2s.recent.files.EditorUtil;
+import b2s.recent.files.RecentFiles;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import org.openide.loaders.DataObject;
