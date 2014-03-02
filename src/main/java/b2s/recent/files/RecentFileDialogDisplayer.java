@@ -13,11 +13,12 @@
 
 package b2s.recent.files;
 
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.*;
 import org.openide.util.NbBundle;
 import org.openide.windows.WindowManager;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class RecentFileDialogDisplayer {
     void displayRecentFiles(final RecentFiles recentFiles) {
@@ -26,8 +27,17 @@ public class RecentFileDialogDisplayer {
                 final JDialog dialog = new JDialog(
                         WindowManager.getDefault().getMainWindow(),
                         NbBundle.getMessage(RecentFileDialogDisplayer.class, "CTL_RecentFilesAction"),
-                        true
+                        false
                 );
+
+                dialog.addWindowFocusListener(new WindowAdapter() {
+
+                    @Override
+                    public void windowLostFocus(WindowEvent e) {
+                        //close on focus lost
+                        dialog.setVisible(false);
+                    }
+                });
 
                 CurrentFileLabel currentFileLabel = new CurrentFileLabel();
                 ListModel model = new DataObjectListModel(recentFiles.asList());
