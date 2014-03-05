@@ -13,29 +13,33 @@
 
 package b2s.recent.files;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import javax.swing.AbstractListModel;
+import java.util.Date;
 import org.openide.loaders.DataObject;
 
-public class DataObjectListModel extends AbstractListModel {
-    private List<TimeStampedDataObject> rows = Collections.synchronizedList(new ArrayList<TimeStampedDataObject>());
+/**
+ *
+ * @author markiewb
+ */
+public class TimeStampedDataObject {
+    private DataObject dataObject;
+    private Date timestamp;
 
-    public DataObjectListModel(List<TimeStampedDataObject> dataObjects) {
-        rows.addAll(dataObjects);
-        this.fireIntervalAdded(rows, 0, rows.size());
+    private TimeStampedDataObject(DataObject dataObject, Date timeOfAdding) {
+        this.dataObject = dataObject;
+        this.timestamp = timeOfAdding;
     }
 
-    @Override
-    public int getSize() {
-        return rows.size();
+    public TimeStampedDataObject(DataObject dataObject) {
+        this(dataObject, new Date());
     }
 
-    @Override
-    public TimeStampedDataObject getElementAt(int index) {
-	if (rows.isEmpty()) return null;
-        return rows.get(index);
+    public DataObject getDataObject() {
+        return dataObject;
     }
 
+    public Date getTimestamp() {
+        return timestamp;
+    }
+    
+    
 }

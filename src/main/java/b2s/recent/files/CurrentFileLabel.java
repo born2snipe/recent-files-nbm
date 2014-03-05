@@ -47,7 +47,7 @@ public class CurrentFileLabel extends JLabel implements ListSelectionListener {
         JList fileList = (JList) e.getSource();
 
         int selectedFile = fileList.getSelectedIndex();
-        DataObject file = (DataObject) fileList.getModel().getElementAt(selectedFile);
+        DataObject file = (DataObject) ((TimeStampedDataObject)fileList.getModel().getElementAt(selectedFile)).getDataObject();
         FileObject fileObject = dataObjectUtil.fileFor(file);
 
         String absolutePath = fileObject.getPath();
