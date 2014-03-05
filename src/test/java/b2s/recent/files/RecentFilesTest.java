@@ -15,6 +15,7 @@ package b2s.recent.files;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openide.loaders.DataObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -93,7 +94,12 @@ public class RecentFilesTest {
         recentFiles.moveToTop(dataObject3);
         recentFiles.moveToTop(dataObject4);
 
-        assertEquals(Arrays.asList(dataObject4, dataObject3, dataObject2), recentFiles.asList());
+        final List<TimeStampedDataObject> asList = recentFiles.asList();
+
+        assertEquals(dataObject4, asList.get(0).getDataObject());
+        assertEquals(dataObject3, asList.get(1).getDataObject());
+        assertEquals(dataObject2, asList.get(2).getDataObject());
+        assertEquals(3, asList.size());
     }
 
     @Test
@@ -103,8 +109,11 @@ public class RecentFilesTest {
 
         recentFiles.moveToTop(dataObject);
         recentFiles.moveToTop(dataObject2);
+        final List<TimeStampedDataObject> asList = recentFiles.asList();
 
-        assertEquals(Arrays.asList(dataObject2, dataObject), recentFiles.asList());
+        assertEquals(dataObject2, asList.get(0).getDataObject());
+        assertEquals(dataObject, asList.get(1).getDataObject());
+        assertEquals(2, asList.size());
     }
 
     @Test
@@ -116,16 +125,24 @@ public class RecentFilesTest {
         recentFiles.moveToTop(dataObject2);
         recentFiles.moveToTop(dataObject);
 
-        assertEquals(Arrays.asList(dataObject, dataObject2), recentFiles.asList());
+        final List<TimeStampedDataObject> asList = recentFiles.asList();
+
+        assertEquals(dataObject, asList.get(0).getDataObject());
+        assertEquals(dataObject2, asList.get(1).getDataObject());
+        assertEquals(2, asList.size());
     }
 
     @Test
     public void add_singleFile() {
         DataObject dataObject = mock(DataObject.class);
-        
+
         recentFiles.moveToTop(dataObject);
 
-        assertEquals(Arrays.asList(dataObject), recentFiles.asList());
+        final List<TimeStampedDataObject> asList = recentFiles.asList();
+
+        assertEquals(dataObject, asList.get(0).getDataObject());
+        assertEquals(1, asList.size());
+
         assertTrue(recentFiles.hasFiles());
     }
 
@@ -146,7 +163,10 @@ public class RecentFilesTest {
         recentFiles.moveToTop(dataObject);
         recentFiles.moveToTop(dataObject);
 
-        assertEquals(Arrays.asList(dataObject), recentFiles.asList());
+        final List<TimeStampedDataObject> asList = recentFiles.asList();
+
+        assertEquals(dataObject, asList.get(0).getDataObject());
+        assertEquals(1, asList.size());
     }
 
     @Test
@@ -169,7 +189,10 @@ public class RecentFilesTest {
         recentFiles.moveToTop(dataObject2);
         recentFiles.remove(dataObject);
 
-        assertEquals(Arrays.asList(dataObject2), recentFiles.asList());
+        final List<TimeStampedDataObject> asList = recentFiles.asList();
+
+        assertEquals(dataObject2, asList.get(0).getDataObject());
+        assertEquals(1, asList.size());
     }
 
     @Test

@@ -31,6 +31,7 @@ public class OpenFileListenerTest {
     private ListModel model;
     private DataObject dataObject;
     private FileOpener fileOpener;
+    private TimeStampedDataObject timeStampedDataObject;
 
     @Test
     public void mouseClicked_not_LeftMouseButton() {
@@ -69,6 +70,7 @@ public class OpenFileListenerTest {
         dialog = mock(Dialog.class);
         model = mock(ListModel.class);
         dataObject = mock(DataObject.class);
+        timeStampedDataObject = new TimeStampedDataObject(dataObject);
         fileOpener = mock(FileOpener.class);
 
         listener = new OpenFileListener(dialog);
@@ -76,7 +78,7 @@ public class OpenFileListenerTest {
 
         when(list.getModel()).thenReturn(model);
         when(list.getSelectedIndex()).thenReturn(1);
-        when(model.getElementAt(1)).thenReturn(dataObject);
+        when(model.getElementAt(1)).thenReturn(timeStampedDataObject);
     }
 
     private KeyEvent key(int keyCode) {

@@ -33,6 +33,7 @@ public class CurrentFileLabelTest {
     private JList list;
     private ListModel model;
     private CurrentFileLabel label;
+    private TimeStampedDataObject timeStampedDataObject;
 
     @Before
     public void setUp() {
@@ -41,13 +42,14 @@ public class CurrentFileLabelTest {
         fileObject = mock(FileObject.class);
         list = mock(JList.class);
         model = mock(ListModel.class);
+        timeStampedDataObject = new TimeStampedDataObject(dataObject);
 
         label = new CurrentFileLabel();
         label.setDataObjectUtil(dataObjectUtil);
 
         when(list.getSelectedIndex()).thenReturn(0);
         when(list.getModel()).thenReturn(model);
-        when(model.getElementAt(0)).thenReturn(dataObject);
+        when(model.getElementAt(0)).thenReturn(timeStampedDataObject);
         when(dataObjectUtil.fileFor(dataObject)).thenReturn(fileObject);
     }
 

@@ -14,14 +14,16 @@
 package b2s.recent.files;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import org.openide.loaders.DataObject;
 
 public class RecentFiles {
+
     private DataObjectUtil dataObjectUtil = new DataObjectUtil();
     private ProjectUtil projectUtil = new ProjectUtil();
-    private LinkedList<DataObject> files = new LinkedList();
+    private LinkedList<TimeStampedDataObject> files = new LinkedList<TimeStampedDataObject>();
     private final int maxRecentFiles;
 
     public RecentFiles(int maxRecentFiles) {
@@ -29,16 +31,16 @@ public class RecentFiles {
     }
 
     public synchronized void moveToTop(DataObject dataObject) {
-        files.remove(dataObject);
-        files.addFirst(dataObject);
+        remove(dataObject);
+        files.addFirst(new TimeStampedDataObject(dataObject));
         if (files.size() > maxRecentFiles) {
             files.removeLast();
         }
     }
 
-    public synchronized List<DataObject> asList() {
+    public synchronized List<TimeStampedDataObject> asList() {
         for (int i=files.size()-1;i>=0;i--) {
-            DataObject file = files.get(i);
+            DataObject file = files.get(i).getDataObject();
             if (!dataObjectUtil.isValid(file) || projectUtil.containingProjectClosed(file)) {
                 remove(file);
             }
@@ -47,7 +49,15 @@ public class RecentFiles {
     }
 
     public synchronized void remove(DataObject dataObject) {
-        files.remove(dataObject);
+        TimeStampedDataObject foundItem = null;
+        for (TimeStampedDataObject item : files) {
+            if (item.getDataObject() == dataObject) {
+                foundItem = item;
+            }
+        }
+        if (foundItem != null) {
+            files.remove(foundItem);
+        }
     }
 
     public synchronized boolean hasFiles() {
@@ -56,8 +66,8 @@ public class RecentFiles {
 
     public synchronized int filesWithTheSameName(String name) {
         int count = 0;
-        for (DataObject dataObject : files) {
-            if (name.equalsIgnoreCase(dataObject.getName())) {
+        for (TimeStampedDataObject recentItem : files) {
+            if (name.equalsIgnoreCase(recentItem.getDataObject().getName())) {
                 count++;
             }
         }

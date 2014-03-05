@@ -40,7 +40,7 @@ public class OpenFileListener extends KeyAdapter implements MouseListener {
     }
 
     private void openSelectedFile(JList list, ListModel model) {
-        fileOpener.open((DataObject) model.getElementAt(list.getSelectedIndex()));
+        fileOpener.open((DataObject) ((TimeStampedDataObject)model.getElementAt(list.getSelectedIndex())).getDataObject());
         dialog.dispose();
     }
 

@@ -14,7 +14,6 @@
 
 package b2s.recent.files;
 
-import org.openide.loaders.DataObject;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -22,6 +21,6 @@ import static org.junit.Assert.*;
 public class DataObjectListModelTest {
  @Test
  public void shouldReturnNullIfTheUnderlyingListIsEmpty() {
-   assertNull(new DataObjectListModel(new ArrayList<DataObject>()).getElementAt(0));
+   assertNull(new DataObjectListModel(new ArrayList<TimeStampedDataObject>()).getElementAt(0));
  }
 }
