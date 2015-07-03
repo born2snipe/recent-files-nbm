@@ -10,7 +10,7 @@
     <groupId>b2s</groupId>
     <artifactId>recent-file-list</artifactId>
     <packaging>nbm</packaging>
-    <version>0.10</version>
+    <version>0.11-SNAPSHOT</version>
     <name>Recent File List</name>
     
     <organization>
@@ -115,7 +115,7 @@
         <connection>scm:git:git@github.com:born2snipe/recent-files-nbm.git</connection>
         <url>git@github.com:born2snipe/recent-files-nbm.git</url>
         <developerConnection>scm:git:git@github.com:born2snipe/recent-files-nbm.git</developerConnection>
-        <tag>0.10</tag>
+        <tag>HEAD</tag>
     </scm>
 
 </project>
